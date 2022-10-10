@@ -1,6 +1,6 @@
 type Customer {
   email: String
-  name: string
+  name: String
 }
 
 type CustomerList {
@@ -9,9 +9,11 @@ type CustomerList {
 }
 
 type Query {
-  """
-  Result typed as JSON since it has fields ["-N6rOmxa7vOOTpZZSllL", "-N6rQgCkbLPB1xElUchT", "-N6rSJ4xI3_Cq7u58Wh_", "-N6rSZB4AoMAwrDnm2jF", "-N6rTRzW_JrkHQMdt5QA"] that are invalid graphql identifiers
-  """
+  getCustomerByID(id: ID!): Customer
+    @rest(
+      endpoint: "https://ups-clone-29427-default-rtdb.firebaseio.com/customers/$id.json"
+    )
+
   getCustomers: [CustomerList]
     @rest(
       endpoint: "https://ups-clone-29427-default-rtdb.firebaseio.com/customers.json"
