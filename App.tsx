@@ -2,12 +2,25 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import RootNavigator from "./navigator/RootNavigator";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  gql,
+} from "@apollo/client";
+
+const client = new ApolloClient({
+  uri: "http://localhost:5001/api/crazy-tarsier/",
+  cache: new InMemoryCache(),
+});
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <StatusBar />
-      <RootNavigator />
-    </NavigationContainer>
+    <ApolloProvider client={client}>
+      <NavigationContainer>
+        <StatusBar />
+        <RootNavigator />
+      </NavigationContainer>
+    </ApolloProvider>
   );
 }
