@@ -1,3 +1,4 @@
+import { gql, useQuery } from "@apollo/client";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import {
   CompositeNavigationProp,
@@ -14,6 +15,9 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { CustomerCard } from "../components/CustomerCard";
+import { GET_CUSTOMERS, GET_ORDERS } from "../graphql/Queries";
+import { useOrders } from "../hooks/useOrders";
 import { RootStackParamList } from "../navigator/RootNavigator";
 import { TabNavParamList } from "../navigator/TabNavigator";
 
@@ -23,14 +27,18 @@ export type CustomerScreenNavProps = CompositeNavigationProp<
 >;
 
 export const CustomerScreen = () => {
-  const navigation = useNavigation<CustomerScreenNavProps>();
   const [input, setInput] = useState<string>("");
+  const navigation = useNavigation<CustomerScreenNavProps>();
+
+  const { loading, error, data } = useQuery(GET_CUSTOMERS);
+  console.log({ data, error });
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, []);
+
   return (
     <ScrollView className="bg-[#5cc0c8]">
       <Image
@@ -47,6 +55,13 @@ export const CustomerScreen = () => {
           className="text-[#555757] ml-4"
         />
       </View>
+
+      <View></View>
+      {data?.getCustomers.map(
+        ({ name: ID, value: { email, name } }: CustomerResponse) => (
+          <CustomerCard userId={ID} key={ID} email={email} name={name} />
+        )
+      )}
     </ScrollView>
   );
 };

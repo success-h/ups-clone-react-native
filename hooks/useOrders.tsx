@@ -2,9 +2,7 @@ import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { GET_ORDERS } from "../graphql/Queries";
 
-interface useOrdersProps {}
-
-export const useCustomerOrders = ({}: useOrdersProps) => {
+export const useOrders = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const { loading, error, data } = useQuery(GET_ORDERS);
 

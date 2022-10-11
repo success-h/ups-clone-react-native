@@ -2,15 +2,10 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import RootNavigator from "./navigator/RootNavigator";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "http://localhost:5001/api/crazy-tarsier/",
+  uri: "http://localhost:5001/api/crazy-tarsier",
   cache: new InMemoryCache(),
 });
 
