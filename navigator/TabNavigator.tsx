@@ -6,14 +6,14 @@ import { Icon } from "@rneui/themed";
 import { OrderScreen } from "../screens/OrderScreen";
 
 interface TabNavigatorProps {}
-interface TabParamListProps {
-  Customer: undefined;
-  Order: undefined;
-}
 
 export type TabNavParamList = {
   Customers: undefined;
-  Orders: undefined;
+  Order: undefined;
+  Modal: {
+    name: string;
+    userId: string;
+  };
 };
 
 const Tab = createBottomTabNavigator<TabNavParamList>();
@@ -41,7 +41,7 @@ export default function TabNavigator({}: TabNavigatorProps) {
                 color={focused ? "#479fd6" : "#dddddd"}
               />
             );
-          } else if (route.name === "Orders") {
+          } else if (route.name === "Order") {
             return (
               <Icon
                 name="box"
@@ -54,7 +54,7 @@ export default function TabNavigator({}: TabNavigatorProps) {
       })}
     >
       <Tab.Screen name="Customers" component={CustomerScreen} />
-      <Tab.Screen name="Orders" component={OrderScreen} />
+      <Tab.Screen name="Order" component={OrderScreen} />
     </Tab.Navigator>
   );
 }

@@ -11,7 +11,7 @@ interface CustomerList {
 interface TrackingItems {
   customer_id: ID;
   customer: Customer;
-  items: Items[];
+  items: Item[];
 }
 
 interface Item {
