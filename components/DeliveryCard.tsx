@@ -1,11 +1,13 @@
 import { Divider, Icon } from "@rneui/themed";
 import { Button, Text, View } from "react-native";
+import MapView, { Marker } from "react-native-maps";
 
 interface DeliveryCardProps {
   order: Order;
 }
 
 export const DeliveryCard = ({ order }: DeliveryCardProps) => {
+  console.log("order:", order);
   return (
     <View className="bg-[#5cc0c8] shadow-md mx-4 my-2 p-4 rounded-lg">
       <View>
@@ -14,7 +16,7 @@ export const DeliveryCard = ({ order }: DeliveryCardProps) => {
           <Text className="text-xs text-center uppercase font-bold text-white">
             {order.carrier} - {order.trackingId}
           </Text>
-          <Text className="text-lg mt-2 text-center uppercase font-bold text-white">
+          <Text className="text-lg mb-2 mt-2 text-center uppercase font-bold text-white">
             Expected Delivery: {new Date(order.createdAt).toLocaleDateString()}
           </Text>
           <Divider color="white" />
@@ -45,6 +47,28 @@ export const DeliveryCard = ({ order }: DeliveryCardProps) => {
           </View>
         );
       })}
+
+      <MapView
+        initialRegion={{
+          latitude: order.Lat,
+          longitude: order.Lng,
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005,
+        }}
+        className="w-full h-[200px]"
+      >
+        {order.Lat && order.Lng && (
+          <Marker
+            coordinate={{
+              latitude: order.Lat,
+              longitude: order.Lng,
+            }}
+            title="Delivery Location"
+            description={order.Address}
+            identifier="destination"
+          />
+        )}
+      </MapView>
     </View>
   );
 };

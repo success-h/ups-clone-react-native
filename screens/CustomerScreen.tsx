@@ -30,6 +30,7 @@ export const CustomerScreen = () => {
   const navigation = useNavigation<CustomerScreenNavigationProps>();
 
   const { loading, error, data } = useQuery(GET_CUSTOMERS);
+  console.log("data", data);
 
   useLayoutEffect(() => {
     navigation.setOptions({
