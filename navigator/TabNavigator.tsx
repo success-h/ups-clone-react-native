@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect } from "react";
 import { CustomerScreen } from "../screens/CustomerScreen";
 import { Icon } from "@rneui/themed";
-import { OrderScreen } from "../screens/OrderScreen";
+import { OrdersScreen } from "../screens/OrdersScreen";
 
 interface TabNavigatorProps {}
 
@@ -54,7 +54,7 @@ export default function TabNavigator({}: TabNavigatorProps) {
       })}
     >
       <Tab.Screen name="Customers" component={CustomerScreen} />
-      <Tab.Screen name="Orders" component={OrderScreen} />
+      <Tab.Screen name="Orders" component={OrdersScreen} />
     </Tab.Navigator>
   );
 }

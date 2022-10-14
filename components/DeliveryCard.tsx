@@ -4,13 +4,19 @@ import MapView, { Marker } from "react-native-maps";
 
 interface DeliveryCardProps {
   order: Order;
+  fullWidth?: boolean;
 }
 
-export const DeliveryCard = ({ order }: DeliveryCardProps) => {
-  console.log("order:", order);
+export const DeliveryCard = ({ order, fullWidth }: DeliveryCardProps) => {
   return (
-    <View className="bg-[#5cc0c8] shadow-md mx-4 my-2 p-4 rounded-lg">
-      <View>
+    <View
+      className={`${
+        fullWidth
+          ? "h-screen rounded-none mx-0 px-0 bg-rose-400"
+          : " mx-4 my-2 p-4 rounded-lg bg-[#5cc0c8] shadow-md"
+      } `}
+    >
+      <View className={`${fullWidth ? "py-10" : ""}`}>
         <Icon name="box" type="entypo" color="white" size={40} />
         <View>
           <Text className="text-xs text-center uppercase font-bold text-white">
@@ -21,7 +27,7 @@ export const DeliveryCard = ({ order }: DeliveryCardProps) => {
           </Text>
           <Divider color="white" />
         </View>
-        <View className="mx-auto">
+        <View className={`${fullWidth ? "" : "mx-auto"}`}>
           <Text className="text-center text-white font-bold mt-5">Address</Text>
 
           <Text className="text-sm text-white text-center">
@@ -39,8 +45,12 @@ export const DeliveryCard = ({ order }: DeliveryCardProps) => {
         console.log({ item });
         return (
           <View
+            className={`${
+              fullWidth
+                ? "py-2 flex-row px-2 justify-between items-center"
+                : "flex-row px-2 justify-between items-center"
+            }`}
             key={item.item_id}
-            className="flex-row px-2 justify-between items-center"
           >
             <Text className="text-xs text-white italic">{item.name}</Text>
             <Text className="text-white text-xl">{item.quantity}</Text>
@@ -55,7 +65,7 @@ export const DeliveryCard = ({ order }: DeliveryCardProps) => {
           latitudeDelta: 0.005,
           longitudeDelta: 0.005,
         }}
-        className="w-full h-[200px]"
+        className={`${fullWidth ? " flex-1" : "w-full h-[200px]"}`}
       >
         {order.Lat && order.Lng && (
           <Marker
