@@ -11,7 +11,7 @@ interface CustomerCardProps {
 }
 
 export const CustomerCard = ({ name, email, userId }: CustomerCardProps) => {
-  console.log({ name, email, userId });
+  // console.log({ name, email, userId });
   const { loading, error, orders } = useCustomerOrders(userId);
 
   const navigation = useNavigation<CustomerScreenNavigationProps>();

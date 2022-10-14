@@ -9,7 +9,7 @@ interface TabNavigatorProps {}
 
 export type TabNavParamList = {
   Customers: undefined;
-  Order: undefined;
+  Orders: undefined;
   Modal: {
     name: string;
     userId: string;
@@ -41,7 +41,7 @@ export default function TabNavigator({}: TabNavigatorProps) {
                 color={focused ? "#479fd6" : "#dddddd"}
               />
             );
-          } else if (route.name === "Order") {
+          } else if (route.name === "Orders") {
             return (
               <Icon
                 name="box"
@@ -54,7 +54,7 @@ export default function TabNavigator({}: TabNavigatorProps) {
       })}
     >
       <Tab.Screen name="Customers" component={CustomerScreen} />
-      <Tab.Screen name="Order" component={OrderScreen} />
+      <Tab.Screen name="Orders" component={OrderScreen} />
     </Tab.Navigator>
   );
 }
