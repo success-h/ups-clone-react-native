@@ -12,28 +12,30 @@ export const DeliveryCard = ({ order, fullWidth }: DeliveryCardProps) => {
     <View
       className={`${
         fullWidth
-          ? "h-screen rounded-none mx-0 px-0 bg-rose-400"
-          : " mx-4 my-2 p-4 rounded-lg bg-[#5cc0c8] shadow-md"
-      } `}
+          ? "h-screen rounded-none  mx-0 px-0 bg-rose-400"
+          : " mx-4 my-2 p-4 rounded-lg bg-[#e6e6e6]"
+      }`}
     >
-      <View className={`${fullWidth ? "py-10" : ""}`}>
-        <Icon name="box" type="entypo" color="white" size={40} />
+      <View className={`${fullWidth ? "py-10" : ""} `}>
+        <Icon name="box" type="entypo" color="gray" size={40} />
         <View>
-          <Text className="text-xs text-center uppercase font-bold text-white">
+          <Text className="text-xs text-center uppercase font-bold text-black">
             {order.carrier} - {order.trackingId}
           </Text>
-          <Text className="text-lg mb-2 mt-2 text-center uppercase font-bold text-white">
+          <Text className="text-lg mb-2 mt-2 text-center text-[#2e2e2e] uppercase font-bold">
             Expected Delivery: {new Date(order.createdAt).toLocaleDateString()}
           </Text>
           <Divider color="white" />
         </View>
         <View className={`${fullWidth ? "" : "mx-auto"}`}>
-          <Text className="text-center text-white font-bold mt-5">Address</Text>
+          <Text className="text-center text-gray-700 font-bold mt-5">
+            Address
+          </Text>
 
-          <Text className="text-sm text-white text-center">
+          <Text className="text-sm ext-gray-700 text-center">
             {order.Address}, {order.City}
           </Text>
-          <Text className="text-sm text-white italic text-center">
+          <Text className="text-sm ext-gray-700 italic text-center">
             Shipping Cost: ${order.shippingCost}
           </Text>
         </View>
@@ -42,7 +44,6 @@ export const DeliveryCard = ({ order, fullWidth }: DeliveryCardProps) => {
       <Divider color="white" />
 
       {order.trackingItems.items.map((item) => {
-        console.log({ item });
         return (
           <View
             className={`${
@@ -52,8 +53,10 @@ export const DeliveryCard = ({ order, fullWidth }: DeliveryCardProps) => {
             }`}
             key={item.item_id}
           >
-            <Text className="text-xs text-white italic">{item.name}</Text>
-            <Text className="text-white text-xl">{item.quantity}</Text>
+            <Text className="text-xs text-ext-gray-700 italic">
+              {item.name}
+            </Text>
+            <Text className="text-gray-700 text-xl">{item.quantity}</Text>
           </View>
         );
       })}

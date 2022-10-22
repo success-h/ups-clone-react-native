@@ -19,9 +19,7 @@ export default function RootNavigator({}: RootNavigatorProps) {
       <Stack.Group>
         <Stack.Screen name="Main" component={TabNavigator} />
       </Stack.Group>
-
       {/* Modal and order screen below */}
-
       <Stack.Group
         screenOptions={{
           presentation: "modal",

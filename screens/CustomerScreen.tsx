@@ -10,6 +10,7 @@ import React, { useLayoutEffect, createRef, useState } from "react";
 import {
   ActivityIndicator,
   Image,
+  SafeAreaView,
   ScrollView,
   Text,
   TextInput,
@@ -39,29 +40,33 @@ export const CustomerScreen = () => {
   }, []);
 
   return (
-    <ScrollView className="bg-[#5cc0c8]">
-      <Image
-        source={{ uri: "https://links.papareact.com/3jc" }}
-        className="w-full h-64"
-        onLoadStart={() => <ActivityIndicator />}
-      />
-      <View className="mx-5 rounded-md px-6 bg-white items-center flex-row">
-        <Icon name="search" type="feather" color="#555757" />
-        <TextInput
-          placeholder="Search by customer"
-          value={input}
-          onChangeText={setInput}
-          className="text-[#5cc0c8] ml-4 w-72 py-4"
+    <SafeAreaView className="bg-white">
+      <ScrollView>
+        <Image
+          source={{
+            uri: "https://res.cloudinary.com/dp3a4be7p/image/upload/v1666453326/media/undraw_takeout_boxes_ap54_pwtxdl.png",
+          }}
+          className="w-full h-64"
+          onLoadStart={() => <ActivityIndicator />}
         />
-      </View>
+        <View className="mx-5 rounded-lg px-6 bg-white backdrop-blur-lg bg-opacity-95 border border-gray-500  items-center flex-row">
+          <Icon name="search" type="feather" color="#555757" />
+          <TextInput
+            placeholder="Search by customer"
+            value={input}
+            onChangeText={setInput}
+            className="text-[#5a5a5a] ml-4 w-72 py-4"
+          />
+        </View>
 
-      {data?.getCustomers
-        ?.filter((customer: CustomerList) =>
-          customer.value.name.includes(input)
-        )
-        .map(({ name: ID, value: { email, name } }: CustomerResponse) => (
-          <CustomerCard userId={ID} key={ID} email={email} name={name} />
-        ))}
-    </ScrollView>
+        {data?.getCustomers
+          ?.filter((customer: CustomerList) =>
+            customer.value.name.includes(input)
+          )
+          .map(({ name: ID, value: { email, name } }: CustomerResponse) => (
+            <CustomerCard userId={ID} key={ID} email={email} name={name} />
+          ))}
+      </ScrollView>
+    </SafeAreaView>
   );
 };

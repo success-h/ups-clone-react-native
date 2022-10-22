@@ -9,6 +9,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Icon } from "@rneui/themed";
 import {
   FlatList,
+  Platform,
   Pressable,
   Text,
   TouchableOpacity,
@@ -33,9 +34,8 @@ export const ModalScreen = ({}) => {
     params: { name, userId },
   } = useRoute<ModalScreenRouteProps>();
   const { loading, error, orders } = useCustomerOrders(userId);
-  console.log(orders);
   return (
-    <View>
+    <View className={`${Platform.OS === "android" && "mt-7"} bg-white`}>
       <TouchableOpacity
         onPress={navigation.goBack}
         className="absolute right-5 top-5 z-10"
@@ -44,7 +44,7 @@ export const ModalScreen = ({}) => {
       </TouchableOpacity>
       <View className="mt-[10px]">
         <View className="py-5 border-b border-[#ddd]">
-          <Text className="text-center text-[#5cc0c8] font-bold text-xl">
+          <Text className="text-center text-[#400deaed] font-bold text-xl">
             {name}
           </Text>
           <Text className="text-center  italic text-sx">deliveries</Text>

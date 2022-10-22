@@ -30,7 +30,7 @@ export default function TabNavigator({}: TabNavigatorProps) {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarActiveTintColor: "#4b9ad6",
+        tabBarActiveTintColor: "#5e33eced",
         tabBarInactiveTintColor: "gray",
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === "Customers") {
@@ -38,7 +38,7 @@ export default function TabNavigator({}: TabNavigatorProps) {
               <Icon
                 name="users"
                 type="feather"
-                color={focused ? "#479fd6" : "#dddddd"}
+                color={focused ? "#5e33eced" : "#dddddd"}
               />
             );
           } else if (route.name === "Orders") {

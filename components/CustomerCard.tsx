@@ -25,17 +25,19 @@ export const CustomerCard = ({ name, email, userId }: CustomerCardProps) => {
         })
       }
     >
-      <View className="bg-white rounded-md my-3 p-7">
+      <View className="bg-[#f0f1f7] rounded-md my-3 p-7">
         <View className="flex-row mb-2 items-start justify-between">
           <View>
-            <Text className="text-2xl font-semibold">{name}</Text>
-            <Text className="text-[#5cc0c8]">ID: {userId}</Text>
+            <Text className="text-2xl text-[#5e33eced] font-semibold">
+              {name}
+            </Text>
+            <Text className="text-[#3a3c3d]">ID: {userId}</Text>
           </View>
           <View className="flex-row items-center">
-            <Text className="mt-6 font-bold text-[#5cc0c8]">
+            <Text className="mt-6 font-bold text-[#5e33eced]">
               {loading ? "Loading..." : `${orders.length} x`}
             </Text>
-            <Icon name="box" type="entypo" color="#5cc0c8" size={50} />
+            <Icon name="box" type="entypo" color="#5e33eced" size={50} />
           </View>
         </View>
         <Card.Divider />

@@ -12,6 +12,7 @@ import {
   Button,
   Image,
   Pressable,
+  SafeAreaView,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -50,34 +51,38 @@ export const OrdersScreen = ({}) => {
   }, []);
 
   return (
-    <ScrollView>
-      <Image
-        source={{ uri: "https://links.papareact.com/m51" }}
-        className="w-full h-64"
-        onLoadStart={() => <ActivityIndicator />}
-      />
+    <SafeAreaView>
+      <ScrollView>
+        <Image
+          source={{
+            uri: "https://res.cloudinary.com/dp3a4be7p/image/upload/v1666456227/media/undraw_Order_delivered_re_v4ab_hbhoiy.png",
+          }}
+          className="w-full h-72"
+          onLoadStart={() => <ActivityIndicator />}
+        />
 
-      <View>
-        <TouchableOpacity
-          onPress={() => setAscending(!ascending)}
-          className="bg-gray-100 py-3 m-4 shadow-lg"
-        >
-          <Text className="text-center font-medium text-md">
-            {ascending ? "Showing: Oldest First" : "Showing: Newest First"}
-          </Text>
-        </TouchableOpacity>
-      </View>
-      {orders
-        ?.sort((a, b) => {
-          if (ascending) {
-            return new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1;
-          } else {
-            return new Date(a.createdAt) < new Date(b.createdAt) ? -1 : 1;
-          }
-        })
-        .map((order) => (
-          <OrdersCard key={order.trackingId} item={order} />
-        ))}
-    </ScrollView>
+        <View>
+          <TouchableOpacity
+            onPress={() => setAscending(!ascending)}
+            className="bg-gray-100 py-3 m-4 shadow-lg"
+          >
+            <Text className="text-center font-medium text-md">
+              {ascending ? "Showing: Oldest First" : "Showing: Newest First"}
+            </Text>
+          </TouchableOpacity>
+        </View>
+        {orders
+          ?.sort((a, b) => {
+            if (ascending) {
+              return new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1;
+            } else {
+              return new Date(a.createdAt) < new Date(b.createdAt) ? -1 : 1;
+            }
+          })
+          .map((order) => (
+            <OrdersCard key={order.trackingId} item={order} />
+          ))}
+      </ScrollView>
+    </SafeAreaView>
   );
 };
